@@ -1,0 +1,181 @@
+=================================
+OUTPUT FROM SERVER SIDE:
+=================================
+
+-bash-4.1$ ./server 5001
+BAL
+Account name from client: mySavings
+BAL
+Account name from client: myChecking
+BAL
+Account name from client: myCD
+BAL
+Account name from client: my401k
+BAL
+Account name from client: my529
+BAL
+Account name from client: my418
+
+----------------------------------
+
+WITHDRAW
+Account name from client: mySavings
+time of operation: 1537583008
+WITHDRAW
+Account name from client: mySavings
+time of operation: 1537583020
+WITHDRAW
+Account name from client: mySavings
+time of operation: 1537583028
+WITHDRAW
+Account name from client: mySavings
+WITHDRAW
+Account name from client: mySavings
+time of operation: 1537583118
+WITHDRAW
+Account name from client: myChecking
+time of operation: 1537583158
+WITHDRAW
+Account name from client: myCD
+WITHDRAW
+Account name from client: my529
+time of operation: 1537583210
+WITHDRAW
+Account name from client: my4188
+
+---------------------------------------
+
+TRANSFER
+from-Account name from client: mySavings
+to-Account name from client: my529
+TRANSFER
+from-Account name from client: mySavings
+to-Account name from client: my529
+TRANSFER
+from-Account name from client: mySavings
+to-Account name from client: my529
+TRANSFER
+from-Account name from client: mySavings
+to-Account name from client: my418
+TRANSFER
+from-Account name from client: my418
+to-Account name from client: my529
+
+
+========================================
+OUTPUT FROM CLIENT SIDE:
+========================================
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 BAL mySavings
+
+Balance in account <mySavings> is: 50000
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 BAL myChecking
+
+Balance in account <myChecking> is: 15000
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 BAL myCD
+
+Balance in account <myCD> is: 8000
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 BAL my401k
+
+Balance in account <my401k> is: 900
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 BAL my529
+
+Balance in account <my529> is: 60
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 BAL my418
+
+Account name doesn't exist!
+
+---------------------------------------
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 WITHDRAW mySavings 18888
+
+Withdraw 18888 from account <mySavings>
+Current balance is: 31112
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 WITHDRAW mySavings 18888
+
+Withdraw 18888 from account <mySavings>
+Current balance is: 12224
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 WITHDRAW mySavings 999
+
+Withdraw 999 from account <mySavings>
+Current balance is: 11225
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 WITHDRAW mySavings 999
+
+Only up to 3 withdraw allowed in one minute, try again later.
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 WITHDRAW mySavings 999
+
+Withdraw 999 from account <mySavings>
+Current balance is: 10226
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 WITHDRAW myChecking 4999
+
+Withdraw 4999 from account <myChecking>
+Current balance is: 10001
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 WITHDRAW myCD 8001
+
+No enought balance in account <myCD>
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 WITHDRAW my529 59
+
+Withdraw 59 from account <my529>
+Current balance is: 1
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 WITHDRAW my4188 8001
+
+Account name doesn't exist!
+
+-------------------------------------------------
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 TRANSFER mySavings 226 my529
+
+Transfer 226 from account <mySavings> to account <my529>
+Current balance after transfering is:
+<mySavings> : 10000        <my529> : 227
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 TRANSFER mySavings 10000 my529
+
+Transfer 10000 from account <mySavings> to account <my529>
+Current balance after transfering is:
+<mySavings> : 0        <my529> : 10227
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 TRANSFER mySavings 1 my529
+
+No enought balance in account <mySavings>
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 TRANSFER mySavings 1 my418
+
+Account name doesn't exist!
+
+
+YQZoeZHENG:programming1 zoe$ ./client 130.207.114.26 5001 TRANSFER my418 1 my529
+
+Account name doesn't exist!
+
+
+
